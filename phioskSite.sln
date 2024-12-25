@@ -3,9 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "phioskSite", "phioskSite\phioskSite.csproj", "{C50F49AC-FFFE-44E2-8DA4-A99D0007BA4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhioskSite", "phioskSite\PhioskSite.csproj", "{C50F49AC-FFFE-44E2-8DA4-A99D0007BA4F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF} = {6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF}
+		{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A} = {9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhioskSite.Domains", "PhioskSite.Domains\PhioskSite.Domains.csproj", "{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhioskSite.Domains", "PhioskSite.Domains\PhioskSite.Domains.csproj", "{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhioskSite.Repositories", "Repositories\PhioskSite.Repositories.csproj", "{16E7AD0A-FFB6-4745-89EC-453AC473D929}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A} = {9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhioskSite.Services", "PhioskSite.Services\PhioskSite.Services.csproj", "{6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16E7AD0A-FFB6-4745-89EC-453AC473D929} = {16E7AD0A-FFB6-4745-89EC-453AC473D929}
+		{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A} = {9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +36,14 @@ Global
 		{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CF15F3F-ADD4-4688-992F-9269EE6CAC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E7AD0A-FFB6-4745-89EC-453AC473D929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E7AD0A-FFB6-4745-89EC-453AC473D929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E7AD0A-FFB6-4745-89EC-453AC473D929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E7AD0A-FFB6-4745-89EC-453AC473D929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1E3C76-2DEF-42AB-A1B1-14B2E2C783EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

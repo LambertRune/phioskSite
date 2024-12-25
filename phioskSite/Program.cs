@@ -1,7 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using PhioskSite.Domains.DataDB;
+using PhioskSite.Domains.EntitiesDB;
+using PhioskSite.Repositories;
+using PhioskSite.Repositories.Interfaces;
+using PhioskSite.Services;
+using PhioskSite.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(Program));
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<PhioskDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddTransient<IDBService<Phone>, PhoneDBService>();
+builder.Services.AddTransient<IDBDAO<Phone>, PhoneDBDAO>();
 
 var app = builder.Build();
 
