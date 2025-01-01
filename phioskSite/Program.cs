@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using PhioskSite.Domains.DataDB;
 using PhioskSite.Domains.EntitiesDB;
 using PhioskSite.Repositories;
@@ -13,8 +14,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(Program));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect("server=mssql004.db.hosting;database=ID456842_phiosk;user=ID456842_phiosk;password=W3LaMbw!9!huqFi"));
+
 builder.Services.AddDbContext<PhioskDbContext>(options =>
-    options.UseSqlServer(connectionString));
+
+options.UseMySql("server=mssql004.db.hosting;database=ID456842_phiosk;user=ID456842_phiosk;password=W3LaMbw!9!huqFi", serverVersion));
+
 
 builder.Services.AddTransient<IDBService<Phone>, PhoneDBService>();
 builder.Services.AddTransient<IDBDAO<Phone>, PhoneDBDAO>();
