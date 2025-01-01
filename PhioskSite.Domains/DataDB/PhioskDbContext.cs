@@ -23,10 +23,8 @@ public partial class PhioskDbContext : DbContext
     public virtual DbSet<UserAccount> UserAccounts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect("server=mssql004.db.hosting;database=ID456842_phiosk;user=ID456842_phiosk;password=W3LaMbw!9!huqFi"));
-        optionsBuilder.UseMySql("server=mssql004.db.hosting;database=ID456842_phiosk;user=ID456842_phiosk;password=W3LaMbw!9!huqFi", serverVersion);
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=.\\SQL22_VIVES; Database=PhioskDB; Trusted_Connection=True; TrustServerCertificate=True; MultipleActiveResultSets=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
