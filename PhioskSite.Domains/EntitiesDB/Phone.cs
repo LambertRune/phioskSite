@@ -17,11 +17,13 @@ public partial class Phone
 
     public int StorageCapacity { get; set; }
 
-  
+   
 
     public string Description { get; set; } = null!;
 
     public string ImageUrl { get; set; } = null!;
 
     public DateOnly AddedOn { get; set; }
+    public int? InvoiceNumber { get; set; }
+    public Invoice? Invoice { get; set; }
 }

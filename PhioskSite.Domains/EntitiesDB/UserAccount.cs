@@ -17,5 +17,5 @@ public partial class UserAccount
 
     public int? Address { get; set; }
 
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+    public ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }
