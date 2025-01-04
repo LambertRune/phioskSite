@@ -12,8 +12,6 @@
 
         public int StorageCapacity { get; set; }
 
-        public int Stock { get; set; }
-
         public string Description { get; set; } = null!;
 
         public string ImageUrl { get; set; } = null!;
