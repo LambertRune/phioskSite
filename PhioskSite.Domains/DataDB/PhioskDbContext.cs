@@ -21,8 +21,15 @@ namespace PhioskSite.Domains.DataDB
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-            => optionsBuilder.UseSqlServer("Server=.\\SQL22_VIVES; Database=PhioskDB; Trusted_Connection=True; TrustServerCertificate=True; MultipleActiveResultSets=true;");
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Use configuration or environment variables
+                optionsBuilder.UseSqlServer(
+                    Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+                    ?? "Your fallback connection string here");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +39,7 @@ namespace PhioskSite.Domains.DataDB
 
                 entity.ToTable("Invoice");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.UserAccount).WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.AccountNo)
@@ -44,24 +51,14 @@ namespace PhioskSite.Domains.DataDB
             {
                 entity.ToTable("Phone");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-                entity.Property(e => e.Brand)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.Color)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.Description)
-                    .HasMaxLength(500)
-                    .IsFixedLength();
-                entity.Property(e => e.ImageUrl)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.PhoneName)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
-                entity.Property(e => e.StorageCapacity).HasColumnName("storageCapacity");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Brand).HasMaxLength(50);
+                entity.Property(e => e.Color).HasMaxLength(50);
+                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.ImageUrl).HasMaxLength(50);
+                entity.Property(e => e.PhoneName).HasMaxLength(50);
+                entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+                entity.Property(e => e.StorageCapacity).HasColumnName("StorageCapacity");
 
                 entity.HasOne(d => d.Invoice).WithMany(p => p.Phones)
                     .HasForeignKey(d => d.InvoiceNumber)
@@ -73,19 +70,11 @@ namespace PhioskSite.Domains.DataDB
             {
                 entity.ToTable("UserAccount");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.Mail)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(50)
-                    .IsFixedLength();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+                entity.Property(e => e.LastName).HasMaxLength(50);
+                entity.Property(e => e.Mail).HasMaxLength(50);
+                entity.Property(e => e.Phone).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);
