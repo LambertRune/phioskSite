@@ -30,9 +30,16 @@ namespace PhioskSite.Services
             throw new NotImplementedException();
         }
 
-        public Task<Phone?> FindByIdAsync(int Id)
+        public async Task<Phone?> FindByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var phone = await _phoneDBDAO.FindByIdAsync(id);
+
+            if (phone == null)
+            {
+                throw new KeyNotFoundException($"Phone with ID {id} not found.");
+            }
+
+            return phone;
         }
 
         public async Task<IEnumerable<Phone>?> GetAllAsync()

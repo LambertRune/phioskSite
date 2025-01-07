@@ -3,7 +3,8 @@
 namespace PhioskSite.ViewModels
 {
     public class PhoneVM
-    {      
+    {
+        public int Id { get; set; }
         public string PhoneName { get; set; } = null!;
 
         public string Brand { get; set; } = null!;

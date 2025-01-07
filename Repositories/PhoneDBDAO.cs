@@ -31,9 +31,9 @@ namespace PhioskSite.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Phone?> FindByIdAsync(int Id)
+        public async Task<Phone?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _context.Phones.FindAsync(Id);
         }
 
         public async Task<IEnumerable<Phone>?> GetAllAsync()

@@ -36,5 +36,28 @@ namespace PhioskSite.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            try
+            {
+                var phone = await _phoneDBService.FindByIdAsync(id);
+
+                if (phone == null)
+                {
+                    return NotFound();
+                }
+
+                // Map the Phone entity to PhoneVM
+                var phoneVM = _mapper.Map<PhoneVM>(phone);
+
+                return View(phoneVM);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Er is een fout opgetreden bij het ophalen van de gegevens.");
+                return RedirectToAction("Index"); // Redirect to Index if there's an error
+            }
+        }
+
     }
 }

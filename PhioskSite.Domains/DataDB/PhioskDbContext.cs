@@ -34,6 +34,9 @@ namespace PhioskSite.Domains.DataDB
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Phone>()
+            .HasKey(p => p.Id);
+
             modelBuilder.Entity<Order>()
             .HasMany(e => e.Phones)
             .WithOne(e => e.Order)
