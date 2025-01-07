@@ -1,7 +1,9 @@
-﻿namespace PhioskSite.ViewModels
+﻿using PhioskSite.Domains.EntitiesDB;
+
+namespace PhioskSite.ViewModels
 {
     public class PhoneVM
-    {
+    {      
         public string PhoneName { get; set; } = null!;
 
         public string Brand { get; set; } = null!;
@@ -14,8 +16,6 @@
 
         public string Description { get; set; } = null!;
 
-        public string ImageUrl { get; set; } = null!;
-
-        public DateOnly AddedOn { get; set; }
+        public string ImageUrl { get; set; } = null!;        
     }
 }

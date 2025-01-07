@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PhioskSite.Domains.EntitiesDB;
 
-public partial class UserAccount
+public class User
 {
     public int Id { get; set; }
 
@@ -11,11 +11,14 @@ public partial class UserAccount
 
     public string LastName { get; set; } = null!;
 
-    public string Phone { get; set; } = null!;
+    public string? Phone { get; set; }
 
     public string Mail { get; set; } = null!;
 
-    public int? Address { get; set; }
+    public int? AddressId { get; set; }
 
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+    // Navigatie-eigenschap naar Address
+    public Address? Address { get; set; }
+
+    public ICollection<Order>? Orders { get; set; } = new List<Order>();
 }
