@@ -24,6 +24,7 @@ public class Phone
 
     public string ImageUrl { get; set; } = null!;
 
-    public DateOnly AddedOn { get; set; }   
+    public DateOnly AddedOn { get; set; }
+    public int? OrderId { get; set; }
     public Order? Order { get; set; }
 }

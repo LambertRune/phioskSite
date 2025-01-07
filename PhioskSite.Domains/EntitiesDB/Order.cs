@@ -9,10 +9,9 @@ public class Order
 
     public DateOnly InvoiceDate { get; set; }
 
-    public DateOnly IssueDate { get; set; }
-
-    public int? AccountNo { get; set; }
+    public DateOnly ExpireDate { get; set; }
 
     public User? User { get; set; }
-    public ICollection<Phone>? Phones { get; set; }
+    public int? UserId { get; set; }
+    public ICollection<Phone>? Phones { get; set; } = new List<Phone>();
 }

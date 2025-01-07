@@ -15,7 +15,10 @@ public class User
 
     public string Mail { get; set; } = null!;
 
-    public int? Address { get; set; }
+    public int? AddressId { get; set; }
 
-    public ICollection<Order>? Orders { get; set; }
+    // Navigatie-eigenschap naar Address
+    public Address? Address { get; set; }
+
+    public ICollection<Order>? Orders { get; set; } = new List<Order>();
 }
