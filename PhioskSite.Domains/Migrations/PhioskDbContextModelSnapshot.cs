@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhioskSite.Domains.DataDB;
 
@@ -18,13 +17,12 @@ namespace PhioskSite.Domains.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Invoice", b =>
+            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Order", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int?>("AccountNo")
@@ -36,16 +34,20 @@ namespace PhioskSite.Domains.Migrations
                     b.Property<DateOnly>("IssueDate")
                         .HasColumnType("date");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountNo");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Invoice", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Phone", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<DateOnly>("AddedOn")
@@ -53,54 +55,44 @@ namespace PhioskSite.Domains.Migrations
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nchar(500)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("InvoiceNumber")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 0)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("StorageCapacity")
-                        .HasColumnType("int")
-                        .HasColumnName("storageCapacity");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InvoiceNumber");
+                    b.HasIndex("OrderId");
 
-                    b.ToTable("Phone", (string)null);
+                    b.ToTable("Phones");
                 });
 
-            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.UserAccount", b =>
+            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.User", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int?>("Address")
@@ -108,61 +100,50 @@ namespace PhioskSite.Domains.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Mail")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength();
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAccount", (string)null);
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Invoice", b =>
+            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Order", b =>
                 {
-                    b.HasOne("PhioskSite.Domains.EntitiesDB.UserAccount", "UserAccount")
-                        .WithMany("Invoices")
-                        .HasForeignKey("AccountNo")
-                        .HasConstraintName("FK_Invoice_UserAccount");
+                    b.HasOne("PhioskSite.Domains.EntitiesDB.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("UserAccount");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Phone", b =>
                 {
-                    b.HasOne("PhioskSite.Domains.EntitiesDB.Invoice", "Invoice")
+                    b.HasOne("PhioskSite.Domains.EntitiesDB.Order", "Order")
                         .WithMany("Phones")
-                        .HasForeignKey("InvoiceNumber")
-                        .HasConstraintName("FK_Phone_Invoice");
+                        .HasForeignKey("OrderId");
 
-                    b.Navigation("Invoice");
+                    b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Invoice", b =>
+            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.Order", b =>
                 {
                     b.Navigation("Phones");
                 });
 
-            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.UserAccount", b =>
+            modelBuilder.Entity("PhioskSite.Domains.EntitiesDB.User", b =>
                 {
-                    b.Navigation("Invoices");
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

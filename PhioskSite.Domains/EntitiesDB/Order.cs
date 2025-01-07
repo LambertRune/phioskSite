@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PhioskSite.Domains.EntitiesDB;
 
-public partial class Invoice
+public class Order
 {
     public int Id { get; set; }
 
@@ -13,6 +13,6 @@ public partial class Invoice
 
     public int? AccountNo { get; set; }
 
-    public UserAccount? UserAccount { get; set; }
+    public User? User { get; set; }
     public ICollection<Phone>? Phones { get; set; }
 }
