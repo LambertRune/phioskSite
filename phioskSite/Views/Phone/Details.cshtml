@@ -3,61 +3,33 @@
 @{
     ViewData["Title"] = "Details";
 }
-<div class="container p-2">
-<h1>Details</h1>
 
-<div >
-    <h4>PhoneVM</h4>
-    <hr />
-    <dl class="row">
-        
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StorageCapacity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StorageCapacity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+<div class="container py-4">
+    <h1 class="mb-4">Details: @Model.PhoneName</h1>
+
+    <div class="card shadow-sm">
+        <div class="row g-0">
+            <!-- Afbeelding -->
+            <div class="col-md-5">
+                <img src="@Model.ImageUrl" class="img-fluid rounded-start" alt="@Model.PhoneName" style="height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Details -->
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h4 class="card-title">@Model.PhoneName</h4>
+                    <p class="card-text"><strong>Brand:</strong> @Model.Brand</p>
+                    <p class="card-text"><strong>Price:</strong> $@Model.Price.ToString("F2")</p>
+                    <p class="card-text"><strong>Color:</strong> @Model.Color</p>
+                    <p class="card-text"><strong>Storage Capacity:</strong> @Model.StorageCapacity GB</p>
+                    <p class="card-text"><strong>Description:</strong> @Model.Description</p>
+
+                    <div class="mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
