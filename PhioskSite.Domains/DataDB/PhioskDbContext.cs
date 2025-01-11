@@ -70,7 +70,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Phantom Black",
                          StorageCapacity = 256,
                          Description = "High-performance smartphone with a sleek design and powerful camera.",
-                         ImageUrl = "https://example.com/images/galaxy_s23.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 1),
                          OrderId = null,
                          Order = null
@@ -84,7 +84,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Starlight",
                          StorageCapacity = 512,
                          Description = "The latest iPhone with exceptional speed and a stunning display.",
-                         ImageUrl = "https://example.com/images/iphone_15.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 2),
                          OrderId = null,
                          Order = null
@@ -98,7 +98,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Obsidian",
                          StorageCapacity = 128,
                          Description = "Google's flagship smartphone with cutting-edge AI features.",
-                         ImageUrl = "https://example.com/images/pixel_8_pro.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 3),
                          OrderId = null,
                          Order = null
@@ -112,7 +112,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Frosted Silver",
                          StorageCapacity = 256,
                          Description = "A photography powerhouse with a stunning 4K OLED display.",
-                         ImageUrl = "https://example.com/images/xperia_1_v.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 4),
                          OrderId = null,
                          Order = null
@@ -126,7 +126,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Volcanic Black",
                          StorageCapacity = 256,
                          Description = "A balanced combination of performance and value for tech enthusiasts.",
-                         ImageUrl = "https://example.com/images/oneplus_12.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 5),
                          OrderId = null,
                          Order = null

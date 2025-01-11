@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhioskSite.Domains.DataDB;
 
@@ -10,9 +11,11 @@ using PhioskSite.Domains.DataDB;
 namespace PhioskSite.Domains.Migrations
 {
     [DbContext(typeof(PhioskDbContext))]
-    partial class PhioskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111192632_foto")]
+    partial class foto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace PhioskSite.Services.Interfaces
 {
-    public interface IphoneDBService: IDBService<Phone>
+    public interface IOrderDBService: IDBService<Order>
     {
-        
+        Task<IEnumerable<Order>> GetBeersByVariety(int Id);
+
     }
 }

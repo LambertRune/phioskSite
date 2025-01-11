@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhioskSite.Domains.DataDB;
 
@@ -10,9 +11,11 @@ using PhioskSite.Domains.DataDB;
 namespace PhioskSite.Domains.Migrations
 {
     [DbContext(typeof(PhioskDbContext))]
-    partial class PhioskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111192400_fotos")]
+    partial class fotos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,7 +197,7 @@ namespace PhioskSite.Domains.Migrations
                             Brand = "Samsung",
                             Color = "Phantom Black",
                             Description = "High-performance smartphone with a sleek design and powerful camera.",
-                            ImageUrl = "/Images/frontPic1.svg",
+                            ImageUrl = "/Images/frontpic1",
                             PhoneName = "Galaxy S23",
                             Price = 999.99m,
                             StorageCapacity = 256
@@ -206,7 +209,7 @@ namespace PhioskSite.Domains.Migrations
                             Brand = "Apple",
                             Color = "Starlight",
                             Description = "The latest iPhone with exceptional speed and a stunning display.",
-                            ImageUrl = "/Images/frontPic1.svg",
+                            ImageUrl = "/Images/frontpic1",
                             PhoneName = "iPhone 15",
                             Price = 1199.99m,
                             StorageCapacity = 512
@@ -218,7 +221,7 @@ namespace PhioskSite.Domains.Migrations
                             Brand = "Google",
                             Color = "Obsidian",
                             Description = "Google's flagship smartphone with cutting-edge AI features.",
-                            ImageUrl = "/Images/frontPic1.svg",
+                            ImageUrl = "/Images/frontpic1",
                             PhoneName = "Pixel 8 Pro",
                             Price = 899.99m,
                             StorageCapacity = 128
@@ -230,7 +233,7 @@ namespace PhioskSite.Domains.Migrations
                             Brand = "Sony",
                             Color = "Frosted Silver",
                             Description = "A photography powerhouse with a stunning 4K OLED display.",
-                            ImageUrl = "/Images/frontPic1.svg",
+                            ImageUrl = "/Images/frontpic1",
                             PhoneName = "Xperia 1 V",
                             Price = 1099.99m,
                             StorageCapacity = 256
@@ -242,7 +245,7 @@ namespace PhioskSite.Domains.Migrations
                             Brand = "OnePlus",
                             Color = "Volcanic Black",
                             Description = "A balanced combination of performance and value for tech enthusiasts.",
-                            ImageUrl = "/Images/frontPic1.svg",
+                            ImageUrl = "/Images/frontpic1",
                             PhoneName = "OnePlus 12",
                             Price = 799.99m,
                             StorageCapacity = 256
