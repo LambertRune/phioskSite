@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.IdentityModel.Tokens;
 using PhioskSite.Domains.EntitiesDB;
-using PhioskSite.Services;
 using PhioskSite.Services.Interfaces;
 using PhioskSite.ViewModels;
 
@@ -11,57 +11,63 @@ namespace PhioskSite.Controllers
     public class OrderController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly OrderDBService _orderDBService;
-        private readonly IDBService<Order> _OrderService;
+        private readonly IOrderDBService _orderDBService;
+        private readonly IDBService<User> _userService;
 
-        public OrderController(OrderDBService orderDBService, IMapper mapper, IDBService<Order> orderService)
+        public OrderController(IOrderDBService orderDBService, IMapper mapper, IDBService<User> userService)
         {
             _orderDBService = orderDBService;
             _mapper = mapper;
-            _OrderService = orderService;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index()
         {
             try
             {
-                UserOrdersVM userOrdesrVM = new UserOrdersVM();
-
-                userOrdesrVM.Orders = new SelectList(
-                    await ,
-                    //"Browernr" komt van domain>entities>Brewery
-                    "Brouwernr",
-                    "Naam"
-                );
-                return View(userOrdesrVM);
+                var users = await _userService.GetAllAsync();
+                var userOrdersVM = new UserOrdersVM
+                {
+                    Orders = new SelectList(users, "Brouwernr", "Naam")
+                };
+                return View(userOrdersVM);
             }
-            catch
+            catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Er is een fout opgetreden bij het ophalen va de lijst ";
+                ViewBag.ErrorMessage = $"Er is een fout opgetreden bij het ophalen van de lijst: {ex.Message}";
                 return View("error");
             }
         }
+
         [HttpPost]
-        public async Task<IActionResult> GetOrders(UserOrdersVM entity)
+        public async Task<IActionResult> Index(UserOrdersVM entity)
         {
-            if (entity.Id == null)
-            {
-                return NotFound();
-            }
             try
             {
-                var beerLst = await _OrderService.get
-                    (Convert.ToInt16(entity.BreweryNumber));
-                List<BeerVM> listVM = _mapper.Map<List<BeerVM>>(beerLst);
+                
 
-                Thread.Sleep(2000); //wacht 2 sec maar moet niet.
-                return PartialView("_SearchBierenPartial", listVM);
+                var userId = entity.Id;
+                    // Retourneer een foutmelding als de ID niet geldig is
+                    ModelState.AddModelError("", "Ongeldige gebruikers-ID.");
+                    return View(entity);
+                
+
+                // Haal orders op voor de opgegeven gebruiker
+                var orderList = await _orderDBService.GetOrdersByUser(userId);
+
+                // Map de orders naar de ViewModel
+                var orderVMList = _mapper.Map<List<OrderVM>>(orderList);
+
+                // Retourneer de partial view met de resultaten
+                return PartialView("_SearchOrdersPartial", orderVMList);
             }
-            catch
+            catch (Exception ex)
             {
-
+                // Log de fout en toon een foutpagina
+                ViewBag.ErrorMessage = $"Er is een fout opgetreden: {ex.Message}";
+                return View("error");
             }
-            return View(entity);
         }
+
     }
 }

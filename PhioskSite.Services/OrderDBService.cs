@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PhioskSite.Services
 {
-    public class OrderDBService : IOrderDBService
+    public class OrderDBService : IDBService<Order>
     {
         private readonly IOrderDBDAO _orderDBDAO;
         public OrderDBService( IOrderDBDAO orderDBDAO)

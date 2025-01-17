@@ -9,7 +9,7 @@ namespace PhioskSite.Services.Interfaces
 {
     public interface IOrderDBService: IDBService<Order>
     {
-        Task<IEnumerable<Order>> GetBeersByVariety(int Id);
+        Task<IEnumerable<Order>> GetOrdersByUser(int Id);
 
     }
 }

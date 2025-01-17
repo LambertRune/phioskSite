@@ -9,6 +9,6 @@ namespace PhioskSite.Repositories.Interfaces
 {
     public interface IOrderDBDAO: IDBDAO<Order>
     {
-        Task<IEnumerable<OrderDBDAO>> GetOrderByUser(int userId);
+        Task<IEnumerable<Order>> GetOrderByUser(int userId);
     }
 }
