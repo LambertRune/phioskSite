@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="QuestPDF" Version="2024.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PhioskSite.Domains\PhioskSite.Domains.csproj" />
     <ProjectReference Include="..\Repositories\PhioskSite.Repositories.csproj" />
   </ItemGroup>

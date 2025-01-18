@@ -39,6 +39,7 @@ namespace PhioskSite.Repositories
             try
             {
                 return await _context.Orders
+                    .Include(o => o.Phones)
                     .Include(o => o.User)
                     .ToListAsync();
             }
@@ -48,6 +49,11 @@ namespace PhioskSite.Repositories
             }
         }
 
+        public async Task<IEnumerable<Order>> GetOrder(int userId)
+        {
+            return await _context.Orders.ToListAsync();
+        }
+
         public async Task<IEnumerable<Order>> GetOrderByUser(int userId)
         {
             try
@@ -55,6 +61,7 @@ namespace PhioskSite.Repositories
                 return await _context.Orders
                     .Where(o => o.UserId == userId)                    
                     .Include(o => o.User)
+                    .Include(o=> o.Phones)
                     .ToListAsync();
             }
             catch (Exception ex)
