@@ -16,7 +16,6 @@
             <div class="form-group">
                 <label for="Id" class="control-label"></label>
                 <select asp-for="Id" asp-items="@Model.Users">
-                    asp-items="@Model.Users">
                     <option>Please select</option>
                 </select>
             </div>
@@ -28,20 +27,27 @@
      src="~/Images/PhioskLoading.gif"
      style="display: none" />
 <div id="content">
-    <p>no User has been selected yet</p>
+    <p>No user has been selected yet.</p>
 </div>
-
 
 @section scripts
 {
     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script>
-        //document.getelementbyid("brewerynumber") -> $
-        $("#Id").on("change",() => {
+        // Trigger form submission when user changes selection
+        $("#Id").on("change", () => {
             $("form").trigger("submit");
-        })
-        let Success = () => {
-            $("#divloading").hide();
+        });
+
+        // Success callback for Ajax request
+        function Success() {
+            $("#divloading").hide(); // Hide loading indicator on success
+        }
+
+        // Failure callback for Ajax request
+        function Failure() {
+            alert("Error occurred while fetching data.");
+            $("#divloading").hide(); // Hide loading indicator in case of error
         }
     </script>
 }

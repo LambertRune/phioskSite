@@ -54,13 +54,34 @@ namespace PhioskSite.Controllers
                 List<OrderVM> listVM = _mapper.Map<List<OrderVM>>(orderLst);
 
                 Thread.Sleep(2000);
-                return PartialView("_SearchOrdersPartial",listVM);
+                return PartialView("PartialViews/_SearchOrdersPartial",listVM);
             }
             catch
             {
                
             }
             return View(entity);
+        }
+        public async Task<IActionResult> _SearchOrdersPartial()
+        {
+            try
+            {
+
+                var lstOrders = await _orderDBService.GetAllAsync();
+                List<OrderVM> orderVMs = null;
+
+                if (lstOrders != null)
+                {
+                    orderVMs = _mapper.Map<List<OrderVM>>(lstOrders);
+                    return View(orderVMs);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Er is een fout opgetreden");
+            }
+            return View();
         }
 
     }

@@ -156,6 +156,13 @@ namespace PhioskSite.Domains.DataDB
                             InvoiceDate = new DateOnly(2025, 1, 5),
                             ExpireDate = new DateOnly(2025, 1, 20),
                             UserId = 3 // Verwijzing naar een bestaande User
+                        },
+                        new Order
+                        {
+                            Id=4,
+                            InvoiceDate = new DateOnly(2025, 1, 5),
+                            ExpireDate = new DateOnly(2025, 1, 20),
+                            UserId = 3 // Verwijzing naar een bestaande User
                         }
                     );
                 });
