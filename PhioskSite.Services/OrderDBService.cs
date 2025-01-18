@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace PhioskSite.Services
 {
-    public class OrderDBService : IDBService<Order>
+    public class OrderDBService : IOrderDBService
     {
         private readonly IOrderDBDAO _orderDBDAO;
-        public OrderDBService( IOrderDBDAO orderDBDAO)
+        public OrderDBService(IOrderDBDAO orderDBDAO)
         {
             _orderDBDAO = orderDBDAO;
         }
@@ -32,14 +32,14 @@ namespace PhioskSite.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Order>?> GetAllAsync()
+        public async Task<IEnumerable<Order>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _orderDBDAO.GetAllAsync();
         }
 
-        public async Task<IEnumerable<Order>> GetBeersByVariety(int userId)
+        public async Task<IEnumerable<Order>> GetOrdersByUser(int Id)
         {
-            return await _orderDBDAO.GetOrderByUser(userId);
+            return await _orderDBDAO.GetOrderByUser(Id);
         }
 
         public Task UpdateAsync(Order entity)

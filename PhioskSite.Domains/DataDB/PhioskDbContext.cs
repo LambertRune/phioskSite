@@ -22,6 +22,7 @@ namespace PhioskSite.Domains.DataDB
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Address> Address { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -72,7 +73,7 @@ namespace PhioskSite.Domains.DataDB
                          Description = "High-performance smartphone with a sleek design and powerful camera.",
                          ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 1),
-                         OrderId = null,
+                         OrderId = 1,
                          Order = null
                      },
                      new Phone
@@ -86,7 +87,7 @@ namespace PhioskSite.Domains.DataDB
                          Description = "The latest iPhone with exceptional speed and a stunning display.",
                          ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 2),
-                         OrderId = null,
+                         OrderId = 1,
                          Order = null
                      },
                      new Phone

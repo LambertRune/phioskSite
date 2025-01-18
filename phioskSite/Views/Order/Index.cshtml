@@ -1,41 +1,47 @@
-﻿@model IEnumerable<PhioskSite.ViewModels.OrderVM>
+﻿@model PhioskSite.ViewModels.UserOrdersVM
 
 @{
     ViewData["Title"] = "Index";
 }
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index"
+              data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-update="#content"
+              data-ajax-loading="#divloading"
+              data-ajax-success="Success"
+              data-ajax-failure="Failure">
+            <div class="form-group">
+                <label for="Id" class="control-label"></label>
+                <select asp-for="Id" asp-items="@Model.Users">
+                    asp-items="@Model.Users">
+                    <option>Please select</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
 
-<h1>Index</h1>
+<img id="divloading"
+     src="~/Images/PhioskLoading.gif"
+     style="display: none" />
+<div id="content">
+    <p>no User has been selected yet</p>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+
+@section scripts
+{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        //document.getelementbyid("brewerynumber") -> $
+        $("#Id").on("change",() => {
+            $("form").trigger("submit");
+        })
+        let Success = () => {
+            $("#divloading").hide();
+        }
+    </script>
 }
-    </tbody>
-</table>

@@ -19,47 +19,22 @@ namespace PhioskSite.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(Order entity)
+        public Task AddAsync(Order entity)
         {
-            try
-            {
-                await _context.Orders.AddAsync(entity);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error adding order: " + ex.Message, ex);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task DeleteAsync(Order entity)
+        public Task DeleteAsync(Order entity)
         {
-            try
-            {
-                _context.Orders.Remove(entity);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error deleting order: " + ex.Message, ex);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<Order?> FindByIdAsync(int Id)
+        public Task<Order?> FindByIdAsync(int Id)
         {
-            try
-            {
-                return await _context.Orders
-                    .Include(o => o.User)
-                    .FirstOrDefaultAsync(o => o.Id == Id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error finding order by ID: " + ex.Message, ex);
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Order>> GetAllAsync()
+        public async Task<IEnumerable<Order>?> GetAllAsync()
         {
             try
             {
@@ -69,7 +44,7 @@ namespace PhioskSite.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error retrieving all orders: " + ex.Message, ex);
+                throw new Exception("Error retrieving all orders");
             }
         }
 
@@ -78,7 +53,7 @@ namespace PhioskSite.Repositories
             try
             {
                 return await _context.Orders
-                    .Where(o => o.UserId == userId)
+                    .Where(o => o.UserId == userId)                    
                     .Include(o => o.User)
                     .ToListAsync();
             }
@@ -90,15 +65,9 @@ namespace PhioskSite.Repositories
 
         public async Task UpdateAsync(Order entity)
         {
-            try
-            {
-                _context.Orders.Update(entity);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error updating order: " + ex.Message, ex);
-            }
+            throw new NotImplementedException();
         }
+
+        
     }
 }

@@ -25,11 +25,12 @@ namespace PhioskSite.Controllers
         {
             try
             {
-                var users = await _userService.GetAllAsync();
-                var userOrdersVM = new UserOrdersVM
-                {
-                    Orders = new SelectList(users, "Brouwernr", "Naam")
-                };
+                UserOrdersVM userOrdersVM = new UserOrdersVM();
+                userOrdersVM.Users = new SelectList(
+                    await _userService.GetAllAsync(),
+                    "Id",
+                    "Mail"
+                );
                 return View(userOrdersVM);
             }
             catch (Exception ex)
@@ -42,31 +43,24 @@ namespace PhioskSite.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserOrdersVM entity)
         {
+            if (entity.Id == null)
+            {
+                return NotFound();
+            }
             try
             {
-                
+                var orderLst = await _orderDBService.GetOrdersByUser
+                    (Convert.ToInt16(entity.Id));
+                List<OrderVM> listVM = _mapper.Map<List<OrderVM>>(orderLst);
 
-                var userId = entity.Id;
-                    // Retourneer een foutmelding als de ID niet geldig is
-                    ModelState.AddModelError("", "Ongeldige gebruikers-ID.");
-                    return View(entity);
-                
-
-                // Haal orders op voor de opgegeven gebruiker
-                var orderList = await _orderDBService.GetOrdersByUser(userId);
-
-                // Map de orders naar de ViewModel
-                var orderVMList = _mapper.Map<List<OrderVM>>(orderList);
-
-                // Retourneer de partial view met de resultaten
-                return PartialView("_SearchOrdersPartial", orderVMList);
+                Thread.Sleep(2000);
+                return PartialView("_SearchOrdersPartial",listVM);
             }
-            catch (Exception ex)
+            catch
             {
-                // Log de fout en toon een foutpagina
-                ViewBag.ErrorMessage = $"Er is een fout opgetreden: {ex.Message}";
-                return View("error");
+               
             }
+            return View(entity);
         }
 
     }
