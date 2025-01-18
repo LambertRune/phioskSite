@@ -74,6 +74,19 @@ namespace PhioskSite.Repositories
         {
             throw new NotImplementedException();
         }
+        public async Task<Order> GetByIdAsync(int orderId, string includeProperties = "")
+        {
+            IQueryable<Order> query = _context.Orders;
+
+            // Voeg gerelateerde entiteiten toe via eager loading
+            query = query.Include(o => o.User) // Laad de User
+                         .Include(o => o.Phones); // Laad de Phones
+
+            // Zoek het specifieke order op basis van het orderId
+            return await query.FirstOrDefaultAsync(o => o.Id == orderId);
+        }
+
+       
 
         
     }

@@ -47,5 +47,10 @@ namespace PhioskSite.Services
         {
             throw new NotImplementedException();
         }
+        public async Task<Order> GetOrderWithDetailsAsync(int orderId)
+        {
+            // Haal het order op inclusief User en OrderItems
+            return await _orderDBDAO.GetByIdAsync(orderId);
+        }
     }
 }
