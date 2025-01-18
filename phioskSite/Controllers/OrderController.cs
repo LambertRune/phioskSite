@@ -1,13 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PhioskSite.Domains.EntitiesDB;
 using PhioskSite.Services.Interfaces;
 using PhioskSite.ViewModels;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace PhioskSite.Controllers
 {
+    
     public class OrderController : Controller
     {
         private readonly IMapper _mapper;
@@ -54,11 +59,11 @@ namespace PhioskSite.Controllers
                 List<OrderVM> listVM = _mapper.Map<List<OrderVM>>(orderLst);
 
                 Thread.Sleep(2000);
-                return PartialView("PartialViews/_SearchOrdersPartial",listVM);
+                return PartialView("PartialViews/_SearchOrdersPartial", listVM);
             }
             catch
             {
-               
+
             }
             return View(entity);
         }
@@ -83,6 +88,10 @@ namespace PhioskSite.Controllers
             }
             return View();
         }
+        
+
+
+       
 
     }
 }

@@ -3,33 +3,34 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index"
-              data-ajax="true"
-              data-ajax-method="POST"
-              data-ajax-mode="replace"
-              data-ajax-update="#content"
-              data-ajax-loading="#divloading"
-              data-ajax-success="Success"
-              data-ajax-failure="Failure">
-            <div class="form-group">
-                <label for="Id" class="control-label"></label>
-                <select asp-for="Id" asp-items="@Model.Users">
-                    <option>Please select</option>
-                </select>
-            </div>
-        </form>
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Index"
+                  data-ajax="true"
+                  data-ajax-method="POST"
+                  data-ajax-mode="replace"
+                  data-ajax-update="#content"
+                  data-ajax-loading="#divloading"
+                  data-ajax-success="Success"
+                  data-ajax-failure="Failure">
+                <div class="form-group">
+                    <label for="Id" class="control-label"></label>
+                    <select asp-for="Id" asp-items="@Model.Users">
+                        <option>Please select</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <img id="divloading"
+         src="~/Images/PhioskLoading.gif"
+         style="display: none" />
+    <div id="content">
+        <p>No user has been selected yet.</p>
     </div>
 </div>
-
-<img id="divloading"
-     src="~/Images/PhioskLoading.gif"
-     style="display: none" />
-<div id="content">
-    <p>No user has been selected yet.</p>
-</div>
-
 @section scripts
 {
     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>

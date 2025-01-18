@@ -5,6 +5,7 @@ using PhioskSite.Repositories;
 using PhioskSite.Repositories.Interfaces;
 using PhioskSite.Services;
 using PhioskSite.Services.Interfaces;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ builder.Services.AddTransient<IOrderDBService, OrderDBService>();
 builder.Services.AddTransient<IOrderDBDAO, OrderDBDAO>();
 
 var app = builder.Build();
-
+QuestPDF.Settings.License = LicenseType.Community;
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
