@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhioskSite.Domains.DataDB;
 
@@ -10,9 +11,11 @@ using PhioskSite.Domains.DataDB;
 namespace PhioskSite.Domains.Migrations
 {
     [DbContext(typeof(PhioskDbContext))]
-    partial class PhioskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111192632_foto")]
+    partial class foto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,13 +142,6 @@ namespace PhioskSite.Domains.Migrations
                             ExpireDate = new DateOnly(2025, 1, 20),
                             InvoiceDate = new DateOnly(2025, 1, 5),
                             UserId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ExpireDate = new DateOnly(2025, 1, 20),
-                            InvoiceDate = new DateOnly(2025, 1, 5),
-                            UserId = 3
                         });
                 });
 
@@ -202,7 +198,6 @@ namespace PhioskSite.Domains.Migrations
                             Color = "Phantom Black",
                             Description = "High-performance smartphone with a sleek design and powerful camera.",
                             ImageUrl = "/Images/frontPic1.svg",
-                            OrderId = 1,
                             PhoneName = "Galaxy S23",
                             Price = 999.99m,
                             StorageCapacity = 256
@@ -215,7 +210,6 @@ namespace PhioskSite.Domains.Migrations
                             Color = "Starlight",
                             Description = "The latest iPhone with exceptional speed and a stunning display.",
                             ImageUrl = "/Images/frontPic1.svg",
-                            OrderId = 1,
                             PhoneName = "iPhone 15",
                             Price = 1199.99m,
                             StorageCapacity = 512

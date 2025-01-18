@@ -20,6 +20,15 @@ builder.Services.AddDbContext<PhioskDbContext>(options =>
 builder.Services.AddTransient<IDBService<Phone>, PhoneDBService>();
 builder.Services.AddTransient<IDBDAO<Phone>, PhoneDBDAO>();
 
+builder.Services.AddTransient<IDBService<Address>, AddressDBService>();
+builder.Services.AddTransient<IDBDAO<Address>, AddressDBDAO>();
+
+builder.Services.AddTransient<IDBService<User>, UserDBService>();
+builder.Services.AddTransient<IDBDAO<User>, UserDBDAO>();
+
+builder.Services.AddTransient<IOrderDBService, OrderDBService>();
+builder.Services.AddTransient<IOrderDBDAO, OrderDBDAO>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

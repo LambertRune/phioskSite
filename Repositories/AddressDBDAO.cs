@@ -10,40 +10,37 @@ using System.Threading.Tasks;
 
 namespace PhioskSite.Repositories
 {
-    public class PhoneDBDAO : IDBDAO<Phone>
+    public class AddressDBDAO : IDBDAO<Address>
     {
         private readonly PhioskDbContext _context;
 
-        public PhoneDBDAO(PhioskDbContext context)
+        public AddressDBDAO(PhioskDbContext context)
         {
             _context = context;
         }
-
-        public Task AddAsync(Phone entity)
-        {
-            
-             throw new NotImplementedException();
-            
-        }
-
-        public Task DeleteAsync(Phone entity)
+        public Task AddAsync(Address entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Phone?> FindByIdAsync(int Id)
+        public Task DeleteAsync(Address entity)
         {
-            return await _context.Phones.FindAsync(Id);
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Phone>?> GetAllAsync()
+        public Task<Address?> FindByIdAsync(int Id)
         {
-            return await _context.Phones
-                .Include(p=> p.Order)
-                .ToListAsync();
+            throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Phone entity)
+        public async Task<IEnumerable<Address>?> GetAllAsync()
+        {
+            
+                return await _context
+                    .Address.ToListAsync();
+            
+        }
+        public Task UpdateAsync(Address entity)
         {
             throw new NotImplementedException();
         }

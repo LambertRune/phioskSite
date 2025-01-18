@@ -22,6 +22,7 @@ namespace PhioskSite.Domains.DataDB
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Address> Address { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -70,9 +71,9 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Phantom Black",
                          StorageCapacity = 256,
                          Description = "High-performance smartphone with a sleek design and powerful camera.",
-                         ImageUrl = "https://example.com/images/galaxy_s23.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 1),
-                         OrderId = null,
+                         OrderId = 1,
                          Order = null
                      },
                      new Phone
@@ -84,9 +85,9 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Starlight",
                          StorageCapacity = 512,
                          Description = "The latest iPhone with exceptional speed and a stunning display.",
-                         ImageUrl = "https://example.com/images/iphone_15.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 2),
-                         OrderId = null,
+                         OrderId = 1,
                          Order = null
                      },
                      new Phone
@@ -98,7 +99,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Obsidian",
                          StorageCapacity = 128,
                          Description = "Google's flagship smartphone with cutting-edge AI features.",
-                         ImageUrl = "https://example.com/images/pixel_8_pro.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 3),
                          OrderId = null,
                          Order = null
@@ -112,7 +113,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Frosted Silver",
                          StorageCapacity = 256,
                          Description = "A photography powerhouse with a stunning 4K OLED display.",
-                         ImageUrl = "https://example.com/images/xperia_1_v.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 4),
                          OrderId = null,
                          Order = null
@@ -126,7 +127,7 @@ namespace PhioskSite.Domains.DataDB
                          Color = "Volcanic Black",
                          StorageCapacity = 256,
                          Description = "A balanced combination of performance and value for tech enthusiasts.",
-                         ImageUrl = "https://example.com/images/oneplus_12.jpg",
+                         ImageUrl = "/Images/frontPic1.svg",
                          AddedOn = new DateOnly(2025, 1, 5),
                          OrderId = null,
                          Order = null
@@ -152,6 +153,13 @@ namespace PhioskSite.Domains.DataDB
                         new Order
                         {
                             Id = 3,
+                            InvoiceDate = new DateOnly(2025, 1, 5),
+                            ExpireDate = new DateOnly(2025, 1, 20),
+                            UserId = 3 // Verwijzing naar een bestaande User
+                        },
+                        new Order
+                        {
+                            Id=4,
                             InvoiceDate = new DateOnly(2025, 1, 5),
                             ExpireDate = new DateOnly(2025, 1, 20),
                             UserId = 3 // Verwijzing naar een bestaande User
