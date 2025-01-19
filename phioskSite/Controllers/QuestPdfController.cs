@@ -87,7 +87,7 @@ namespace PhioskSite.Controllers
                                 .Column(column =>
                                 {
 
-                                    column.Item().Image("C:\\Users\\Pc_Rune\\Documents\\GitHub\\phioskSite\\phioskSite\\wwwroot\\Images\\Logo.png").FitArea();
+                                    column.Item().Image("C:\\Users\\Pc_Rune\\Documents\\GitHub\\phioskSite\\phioskSite\\wwwroot\\Images\\PdfGenerator\\Logo.png").FitArea();
                                 });
 
                             // Invoice Title
@@ -188,7 +188,7 @@ namespace PhioskSite.Controllers
                                             text.Span("Betaal veilig via je bank");
                                         });
                                     });
-                                    payment.RelativeItem(2).AlignRight().Image("C:\\Users\\Pc_Rune\\Documents\\GitHub\\phioskSite\\phioskSite\\wwwroot\\Images\\googleQRcodes.png").FitHeight();
+                                    payment.RelativeItem(2).AlignRight().Image("C:\\Users\\Pc_Rune\\Documents\\GitHub\\phioskSite\\phioskSite\\wwwroot\\Images\\PdfGenerator\\googleQRcodes.png").FitHeight();
                                 });
                                 row.RelativeItem(2);
                                 row.RelativeItem(2).Column(summary =>
