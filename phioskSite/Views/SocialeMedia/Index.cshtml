@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Links.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+    <style>
+        body {
+
+            background: url('Images/SocialeMedia/benCover.svg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .row:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+
+    <div class=" text-center shadow m-5 p-4 bg-white">
+        <div class="justify-content-center mb-5">
+            <img src="~/Images/SocialeMedia/LogoBen.svg" class="w-25" alt="Logo" />
+        </div>
+        <div class="row border rounded-pill ms-5 me-5 p-3 justify-content-center mb-4" onclick="window.location.href='https://ben-woonzorgnetwerk.be'">
+            <i class="bi bi-send icons"> Website</i>
+        </div>
+        <div class="row border rounded-pill ms-5 me-5 p-3 justify-content-center mb-4" onclick="window.location.href='https://www.facebook.com/BEN.Roeselare'">
+            <i class="bi bi-facebook icons"> Facebook BEN Roeselare</i>
+        </div>
+        <div class="row border rounded-pill ms-5 me-5 p-3 justify-content-center mb-4" onclick="window.location.href='https://www.facebook.com/benwznardooie/?locale=nl_BE'">
+            <i class="bi bi-facebook icons"> Facebook BEN Ardooie</i>
+        </div>
+        <div class="row border rounded-pill ms-5 me-5 p-3 justify-content-center mb-4">
+            <i class="bi bi-instagram icons"> Instagram</i>
+        </div>
+        <div class="row border rounded-pill ms-5 me-5 p-3 justify-content-center mb-4">
+            <i class="bi bi-tiktok icons"> TikTok</i>
+        </div>
+        <div class="row border rounded-pill ms-5 me-5 p-3 justify-content-center mb-4" onclick="window.location.href='https://www.linkedin.com/company/benwoonzorgnetwerk/'">
+            <i class="bi bi-linkedin icons"> LinkedIn</i>
+        </div>
+
+    </div>
+
+</body>
+</html>
