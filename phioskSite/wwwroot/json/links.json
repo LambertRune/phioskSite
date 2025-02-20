@@ -1,6 +1,13 @@
 {
   "links": [
     {
+      "icon": "bi bi-balloon-heart",
+      "text": "Jobdag 11 maart",
+      "url": "https://ben-woonzorgnetwerk.be/vacatures/jobdag"
+
+
+    },
+    {
       "icon": "bi-send",
       "text": "Website",
       "url": "https://ben-woonzorgnetwerk.be"
